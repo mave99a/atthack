@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gmWebApp>
+	<AppID>80004</AppID>
+	<AppType>RemoteHigh</AppType>
+	<FriendlyName>Map</FriendlyName>
+	<VehicleStatus>Drive</VehicleStatus>
+	<AutoStart>false</AutoStart>
+	<AppCategory>General</AppCategory>
+	<RemotePath></RemotePath>
+	<IconURL>Icon.png</IconURL>
+	<MainURL>index.html</MainURL>
+	<AppVersion>1.0.0</AppVersion>
+</gmWebApp>

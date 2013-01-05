@@ -1,0 +1,15 @@
+*.pyc
+*.pyo
+*.swp
+*.tmp
+_generated_media*
+.dynamic_media
+desktop.ini
+.pydevproject
+.project
+.DS_Store
+.settings/*
+index.yaml
+Pods
+*.lock
+

@@ -1,0 +1,140 @@
+/*
+ * Add your Stylesheet contents here
+ * Press Ctrl + Space to see template proposals.
+ */
+
+body {
+	/*margin-top:100px;*/
+	background-color: black;
+}
+
+
+.screen {
+	position: absolute;
+	top: 90px; /* Spec says this is 90px, but emulator is using 95 */
+	height: 392px; /* Previously 339px */
+	width: 100%;
+	font-size: 28px; /* All text should be at least this size for readability */
+}
+.screen .loading {
+	position:absolute;
+	top:0px;
+	left: 0px;
+	height: 100%; 
+	width: 100%;	
+	background: -webkit-linear-gradient(top, rgba(245,246,246,1) 0%,rgba(219,220,226,1) 21%,rgba(184,186,198,1) 49%,rgba(221,223,227,1) 80%,rgba(245,246,246,1) 100%);
+	margin: 0px auto; 
+    text-align: center;
+    vertical-align: middle;
+}
+
+.screen .main{
+	position: absolute;
+	top:0px;
+	left:0px;
+	width: 100%;
+	height: 100%;
+}
+#theMap {
+	width:100%;
+	height: 100%;
+	margin:0px;
+}
+
+#theButtons {
+	position: absolute;
+	top: 0px;
+	height: 97%;
+	width: 220px;
+	left: 5px;
+	z-index: 1000;
+}
+
+.mapButton {
+	z-index: 1000;
+	margin-left: 3px;
+	position: absolute;
+}
+
+#theZoomInButton {
+	top: 0px;
+}
+
+#theZoomOutButton {
+	top: 60px;
+}
+
+#theTrafficLayerButton {
+	top: 120px;
+}
+#theSatelliteLayerButton {
+	top: 180px;
+}
+#theBreadcrumbsButton {
+	top: 240px;
+}
+
+#theTireIndicatorDiv {
+	position: absolute;
+	opacity: .3;
+	top: 0px;
+	left: 65px;
+	z-index: 1000;
+}
+
+#theTireIndicatorImage {
+	padding: 2px;
+	border: 3px solid red;
+	-webkit-border-radius: 5px;
+	z-index: 1000;
+}
+
+
+#focusVehicleButton {
+	top: 305px;
+}
+
+#focusDestinationButton {
+	left: 65px;
+	top: 305px;
+}
+
+#focusBothButton {
+	left: 130px;
+	top: 305px;
+}
+
+#theVersionDiv {
+	position: absolute;
+	right: 0px;
+	bottom: 0px;
+	margin-bottom: 20px;
+	margin-right: 5px;
+	font-size: 10px;
+	font-weight: bold;
+	color: white;
+	opacity: 0.8;
+	text-align: right;
+	z-index: 1000;
+	background-color: #0000aa;
+	padding: 3px;
+}
+
+#pinButton {
+	position: relative;
+	right: 0px;
+	bottom: 0px;
+	margin-right: 5px;
+	margin-bottom: 5px;
+}
+
+.horizVertAlignCenter {
+	display: table-cell;
+	width: 800px;
+    height: 387px;
+    text-align: center;
+    vertical-align: middle;
+}
+
+
+      

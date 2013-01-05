@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <title>Hello Data</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<link rel="stylesheet" href="GMLIB/com.gm.widgets.css" type="text/css"/>
+		<script type="text/javascript" src="GMLIB/com.gm.widgets.js"></script>
+		<script type="text/javascript" src="GMLIB/info.js"></script>
+		<script type="text/javascript" src="GMLIB/system.js"></script>
+		
+		<script type="text/javascript">
+
+		// defining an explicit list allows one to only 
+		// get what you are looking for
+		var dataList = [
+			  "gps_heading"
+			, "gps_lat"
+			, "gps_long"
+			, "gps_elevation"
+			, "engine_speed"
+			, "average_speed"
+			, "odometer"
+			, "fuel_level"
+			// , "outside_air_temp"
+			// , "tire_left_front_pressure"
+			// , "tire_left_rear_pressure"
+			// , "tire_right_front_pressure"
+			// , "tire_right_rear_pressure"
+			// , "vin_2_9"
+			// , "vin_10_17"
+			// , "long_accel"
+			// , "lat_accel"
+			// , "yaw_rate"
+		];
+		
+		// helper function to turn the heading from a degree
+		// into a point on the compass
+		function getCompass(degree)
+		{
+			compass = ["N","NNE","NE","ENE",
+			           "E","ESE","SE","SSE",
+			           "S","SSW","SW","WSW", 
+			           "W","WNW","NW","NNW",
+			           "N"]; 
+			
+			actualHeading = degree;
+			
+			if (degree < 0) {
+				actualHeading = 360 + degree;	
+			}
+			
+			index = Math.floor((actualHeading/22.5)+.5);
+			return compass[index];
+		}
+		
+        function roundTo(f, v)
+        {
+            m = Math.pow(10, f);
+            return Math.round(v * m) / m;
+        }
+            
+		// helper function for updating the data in the presentation
+		function updateData(obj)
+		{
+			if ("gps_heading" in obj) x$("#heading").inner(getCompass(obj.gps_heading));
+			if ("gps_lat" in obj) x$("#latitude").html(roundTo(6, obj.gps_lat / 3600000));
+			if ("gps_long" in obj) x$("#longitude").html(roundTo(6, obj.gps_long / 3600000));
+			if ("gps_elevation" in obj) x$("#elevation").html(roundTo(2, obj.gps_elevation / 100) + ' meters');
+			if ("engine_speed" in obj) x$("#rpm").inner(obj.engine_speed + ' rpm');
+			if ("average_speed" in obj) x$("#average").inner(Math.floor(obj.average_speed) + ' kph');
+			if ("odometer" in obj) x$("#odometer").html(roundTo(2, obj.odometer) + ' kilometers');
+			if ("fuel_level" in obj) x$("#fuel").html(obj.fuel_level*100 + '%');
+			
+			// here are more (in case you are interested)
+			// x$("#temp").html(obj.outside_air_temp);
+			// x$("#left_front").inner(obj.tire_left_front_pressure);
+			// x$("#right_front").inner(obj.tire_right_front_pressure);
+			// x$("#left_rear").inner(obj.tire_left_rear_pressure);
+			// x$("#right_rear").inner(obj.tire_right_rear_pressure);
+			// x$("#vin").html("" + obj.vin_2_9 + obj.vin_10_17);
+			// x$("#long_accel").html(obj.long_accel);
+			// x$("#lat_accel").html(obj.lat_accel);
+			// x$("#yaw").inner(obj.yaw_rate);
+		}
+		
+		// initialize the app by setting up callbacks for reading data
+		function init() 
+		{		
+			// set the initial information
+			// if you don't do this, your data will be empty until 
+			// the first time it changes.
+			infoID = gm.info.getVehicleData(
+				function(obj){
+					updateData(obj);
+				}, 
+				function(obj) {
+					// nothing to do
+				},
+				dataList
+			);
+			
+			// update when changes (after the first time)
+			infoID = gm.info.watchVehicleData(
+				function(obj){
+					updateData(obj);
+				}, 
+				function(obj) {
+					// nothing to do
+				},
+				dataList
+			);
+		};
+		</script>
+	
+		<style>
+			body {
+				margin: 10px;
+				margin-top:100px;
+				background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #000000), color-stop(1, #4E33FF));
+				color:#EEE;
+				font-size:35px;
+			}
+			
+			h2 {
+				text-align: center;
+				font-size:30px;
+			}
+			
+			p {
+				margin: 20px;
+			}	
+		</style>
+
+    </head>
+    <body onload="gm.system.init();javascript:init();">
+    	<!-- layout the screen -->
+	    <div>Heading: <span id="heading"></span></div>
+	    <div>Latitude: <span id="latitude"></span></div>
+	    <div>Longitude: <span id="longitude"></span></div>
+	    <div>Elevation: <span id="elevation"></span></div>   
+	    <div>Engine: <span id="rpm"></span></div>
+	    <div>Average Speed: <span id="average"></span></div>
+	    <div>Odometer: <span id="odometer"></span></div>
+	    <div>Fuel Level: <span id="fuel"></span></div>
+	        	
+    	<!-- here are more (in case you are interested)
+    	<div>Temperature: <span id="temp"></span></div>
+	    <div>Tire Pressure: <span id="left_front"></span>, <span id="right_front"></span>, <span id="left_rear"></span>, <span id="right_rear"></span></div>
+    	<div>VIN: <span id="vin"></span></div>
+    	<div>Latitude Acceleration: <span id="lat_accel"></span></div>
+	    <div>Longitude Acceleration: <span id="long_accel"></span></div>
+	    <div>Yaw Rate: <span id="yaw"></span></div>
+	    -->
+    </body>
+</html>
