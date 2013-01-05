@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<faceted-project>
+  <runtime name="com.gm.sdk.tools.wrt:1.1"/>
+  <fixed facet="com.gm.widgets"/>
+  <fixed facet="comm"/>
+  <fixed facet="phone"/>
+  <fixed facet="tmw.core"/>
+  <fixed facet="tmw.geolocation"/>
+  <fixed facet="system"/>
+  <fixed facet="info"/>
+  <fixed facet="util"/>
+  <fixed facet="ui"/>
+  <fixed facet="io"/>
+  <fixed facet="media"/>
+  <fixed facet="wst.jsdt.web"/>
+  <fixed facet="nav"/>
+  <installed facet="com.gm.widgets" version="1.0"/>
+  <installed facet="comm" version="1.0"/>
+  <installed facet="info" version="1.0"/>
+  <installed facet="io" version="1.0"/>
+  <installed facet="media" version="1.0"/>
+  <installed facet="nav" version="1.0"/>
+  <installed facet="phone" version="1.0"/>
+  <installed facet="system" version="1.0"/>
+  <installed facet="ui" version="1.0"/>
+  <installed facet="util" version="1.0"/>
+  <installed facet="wst.jsdt.web" version="1.0"/>
+  <installed facet="tmw.core" version="1.0"/>
+  <installed facet="tmw.geolocation" version="1.0"/>
+</faceted-project>

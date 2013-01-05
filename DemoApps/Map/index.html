@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <title>GM Dashboard App</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <link rel="stylesheet" href="GMLIB/com.gm.widgets.css" type="text/css"/>
+        <script type="text/javascript" src="GMLIB/com.gm.widgets.js"></script>
+        <script type="text/javascript" src="GMLIB/comm.js"></script>
+        <script type="text/javascript" src="GMLIB/info.js"></script>
+        <script type="text/javascript" src="GMLIB/io.js"></script>
+        <script type="text/javascript" src="GMLIB/media.js"></script>
+        <script type="text/javascript" src="GMLIB/nav.js"></script>
+        <script type="text/javascript" src="GMLIB/phone.js"></script>
+        <script type="text/javascript" src="GMLIB/system.js"></script>
+        <script type="text/javascript" src="GMLIB/ui.js"></script>
+        <script type="text/javascript" src="GMLIB/util.js"></script>
+        <script type="text/javascript" src="GMLIB/voice.js"></script>
+        <script type="text/javascript" src="lib/geo.js"></script>
+        <script type="text/javascript" src="lib/jquery-1.7.2.js"></script>
+        <script type="text/javascript" src="lib/jquery.base64.js"></script>
+
+		<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?key=AIzaSyAGz8uPIbHEkjLmwABN8pObQFfmVgPjfdg&sensor=false&libraries=geometry"></script>
+
+        <link rel="stylesheet" href="ngi_maps.css" type="text/css"/>
+    </head>
+    <body>
+        <script type="text/javascript" src="console.js"></script>
+        <script type="text/javascript" src="utils.js"></script>
+        <script type="text/javascript" src="marker.js"></script>
+        <script type="text/javascript" src="page.js"></script>
+        <script type="text/javascript" src="ngi_maps.js"></script>
+		<script>
+			// Only when everything in the document is loaded.
+			$(document).ready(init);
+		</script>
+
+    	<div id="theScreen" class="screen">
+    	
+    		<!--  ############## -->
+    		<!--  LOADING SCREEN -->
+    		<!--  ############## -->
+    		<div id="loading" class="loading">
+				<div class="horizVertAlignCenter">
+	    			<img src="images/loading-anim.gif" /><br />
+	    			Loading...
+	    		</div>
+    		</div>
+
+
+			<div id="main" class="main" style="display: none;">
+				<img id="theZoomInButton" class="mapButton" src="images/button_zoom_in.png"  border="0" />
+				<img id="theZoomOutButton" class="mapButton" src="images/button_zoom_out.png"  border="0" />
+				<img id="theTrafficLayerButton" class="mapButton" src="images/button_traffic_off.png" border="0" />
+				<img id="theSatelliteLayerButton" class="mapButton" src="images/button_satellite_off.png" border="0" />
+				<img id="theBreadcrumbsButton" class="mapButton" src="images/button_breadcrumbs_off.png" border="0" />
+				<img id="focusVehicleButton" class="mapButton" src="images/focus-vehicle_off.png" border="0" />
+				<img id="focusDestinationButton" class="mapButton" src="images/focus-destination_off.png" border="0" />
+				<img id="focusBothButton" class="mapButton" src="images/focus-both_off.png" border="0" />
+
+				<div id="theTireIndicatorDiv" style="display:none;"><img id="theTireIndicatorImage" src="images/indicators/tire-pressure-indicator-red.png" width="45"></div>
+				<!-- The MAP -->
+				<div id="theMap" class="theMap"></div>
+			</div>
+			
+			<div id="theVersionDiv">Version&nbsp;x.x.x</div>
+			
+		</div>
+		
+		
+		<!--  
+			This section contains some offscreen content that is never shown directly, instead it is cloned 
+			and modified to suit the particular purposes.
+		-->
+		<div id="offscreen" style="display: none;">
+			<!-- Template for showing the vehicle information in the InfoWindow -->
+			<div id="vehicleInfoTemplate">
+				<div style='font-size: 22px;'>
+					<table>
+						<tr valign='middle'>
+							<td><span id="vehicleInfo_line">Line</span></td>
+							<td><img src="images/pin-button.png" border="0" onclick='reverseGeocodeToInfoWindowAndDropPin(); return false;' style="padding-left:8px;" width="55"/></td></tr>
+				</table></div>
+			</div>
+			
+			
+			<!-- Template for the pin information in the InfoWindow -->
+			<div id="pinInfoTemplate">
+				<div style="font-size:22px;">
+					<table>
+						<tr><td ><span id="pinInfo_line">Line</span></td>
+							<td><img src="images/trash-can-button.png" onclick='removePin()' style="padding-left:8px;" width="55"></td>
+						</tr>
+					</table>
+				</div>
+			</div>
+		</div>
+		
+    </body>
+</html>
