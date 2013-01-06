@@ -5,4 +5,19 @@
 
 body {
 	margin-top:100px;
+	background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #000000), color-stop(1, #4E33FF));
+}
+
+.eventitem {
+	width:90%; 
+	margin:10px; 
+	padding:10px; 
+	border: 2px solid #000055;
+	border-radius: 10px;
+	color: #fff;
+}
+
+.eventitem:hover {
+	background: #ff0000;
+	-webkit-transition: all .75s ease;
 }
