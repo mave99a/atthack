@@ -15,6 +15,7 @@ GOOGLE_URL_SHORTENER = 'https://www.googleapis.com/urlshortener/v1/url';
 //
 GOOGLE_OATH_TOKEN = 'ya29.AHES6ZSq-NrjgLMz99UStmEmX65hDwYyrfOu9GJVh44DXz9TlXUGDw';
 
+ATT_OAUTH_TOKEN = 'e0c2f766447f9c5e4bc61bcc37333702';
 
 function shortenUrl(url)
 {
@@ -87,5 +88,22 @@ function showGoogleCalenderItem()
 
 function init()
 {
-	// TODO Add your code here
+	sendSMS('18155140539', 'test message');
+}
+
+function sendSMS(phoneNumber, message)
+{
+	$.ajax({
+		'type': 'POST',
+		'url': 'https://api.att.com/rest/sms/2/messaging/outbox',
+		'headers': {
+			'Authorization': 'Bearer ' + ATT_OAUTH_TOKEN,
+			'Content-Type': 'application/x-www-form-urlencoded'
+		},
+		'data': {'Address': 'tel:' + phoneNumber, 'Message': message}
+	}).done(function(data) {
+		alert('data');
+	}).fail(function(error) {
+		alert('error' + error);
+	});
 }
