@@ -18,12 +18,15 @@
         <script type="text/javascript" src="jstemplate.js"></script>
         <script type="text/javascript" src="basic.js"></script>
         <link rel="stylesheet" href="basic.css" type="text/css"/>
+		<script type="text/javascript"
+      		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBQN4rGMBifoNXZFi22kNeoM3w9clrW2fM&sensor=false">
+    	</script>
 		<script type="text/html" id="event_tmpl">
 			<div style="width:90%; margin:10px; padding:10px; border: 2px solid #000055;">
               <h3><%=summary%></h3>
 			  start: <%=start.dateTime%><br/>
               end: <%=end.dateTime%><br/>
-	          location <%=location%><br/>
+	          location <%=location%> <span class="latlng"></span><br/>
 			</div>
  		</script>
     </head>

@@ -13,7 +13,7 @@ GOOGLE_URL_SHORTENER = 'https://www.googleapis.com/urlshortener/v1/url';
 //  Get Oauth token here:
 //   https://developers.google.com/oauthplayground/?code=4/lAw3rs_qZTiEohO9vZedxr21BBPj.0qML9mvQSr4UuJJVnL49Cc90-hQaeAI
 //
-GOOGLE_OATH_TOKEN = 'ya29.AHES6ZRDJiOVh0ChJ-RlnekSStvrquFjNIpXV96KNMveJXLBI5ECyA';
+GOOGLE_OATH_TOKEN = 'ya29.AHES6ZSq-NrjgLMz99UStmEmX65hDwYyrfOu9GJVh44DXz9TlXUGDw';
 
 
 function shortenUrl(url)
@@ -40,12 +40,41 @@ function getGoogleCalenderItem()
 			});
 }
 
+var geocoder = null; 
+function codeAddress(address, callback)
+{
+	if (!geocoder) {
+		geocoder = new google.maps.Geocoder();
+	}
+	
+    geocoder.geocode( { 'address': address}, function(results, status) {
+        if (status == google.maps.GeocoderStatus.OK) {
+        	if (callback) {
+        		callback(results[0].geometry.location);
+        	}
+        } else {
+          // Not able to find the lat/lng
+          //alert("Geocode was not successful for the following reason: " + status);
+        }
+      });
+}
+
 function handleEvents(data)
 {
 	for (var i in data.items) {
 		var event = data.items[i];
 		
-		$('#output').append(tmpl('event_tmpl', event));
+		var item = $(tmpl('event_tmpl', event));
+		$('#output').append(item);
+		
+		if (event.location) {
+			codeAddress(event.location, function(latlng) {
+				alert(latlng);
+				(function (el, ll) {
+					el.find('.latlng').html(' ' + ll);
+				} (item, latlng));
+			});
+		}
 	}
 }
 
