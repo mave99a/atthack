@@ -4,6 +4,8 @@
 
 // Pre-generated OAuth Token here
 
+ATT_OAUTH_TOKEN = 'e0c2f766447f9c5e4bc61bcc37333702';
+
 GOOGLE_APP_ID = '407408718192.apps.googleusercontent.com';
 GOOGLE_CALENDER_URL = 'https://www.googleapis.com/calendar/v3/calendars/primary/events';
 GOOGLE_URL_SHORTENER = 'https://www.googleapis.com/urlshortener/v1/url';
@@ -13,9 +15,8 @@ GOOGLE_URL_SHORTENER = 'https://www.googleapis.com/urlshortener/v1/url';
 //  Get Oauth token here:
 //   https://developers.google.com/oauthplayground/?code=4/lAw3rs_qZTiEohO9vZedxr21BBPj.0qML9mvQSr4UuJJVnL49Cc90-hQaeAI
 //
-GOOGLE_OATH_TOKEN = 'ya29.AHES6ZSq-NrjgLMz99UStmEmX65hDwYyrfOu9GJVh44DXz9TlXUGDw';
+GOOGLE_OATH_TOKEN = 'ya29.AHES6ZQhZ2DWGOoDvU1gmVFw1CrjBGpxKRfDoQ90ppkr3qLKSXNVT6w';
 
-ATT_OAUTH_TOKEN = 'e0c2f766447f9c5e4bc61bcc37333702';
 
 function shortenUrl(url)
 {
@@ -71,7 +72,7 @@ function handleEvents(data)
 		if (event.location) {
 			(function (el) {
 				codeAddress(event.location, function(latlng) {
-					el.find('.latlng').html(' ' + latlng);
+					$.data(el.find('.setdest').show(), 'latlng', latlng);
 				});				
 			}(item));
 		}
@@ -89,6 +90,30 @@ function init()
 {
 	sendSMS('18155140539', 'test message');
 }
+
+$(function(){
+	$('.setdest').live('click',function() {
+		var latlng = $.data($(this), 'latlng');
+		if (latlng) {
+			alert(latlng);
+			gm.nav.setDestination(
+			    function(responseObj) {
+			        console.log('Success: setDestination.');
+			    },
+			    function() {
+			        console.log('Failure: setDestination.');
+			    },
+			    {
+			        "state" : "MI",
+			        "city" : "Detroit",
+			        "street" : "Campus Martius",
+			        "house": "1",
+			        "zip": "48226"
+			    }
+			);
+		}
+	});
+});
 
 function sendSMS(phoneNumber, message)
 {
