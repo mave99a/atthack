@@ -246,6 +246,8 @@ function sendSMS(phoneNumber, message)
 		},
 		'data': {'Address': 'tel:' + phoneNumber, 'Message': message}
 	}).done(function(data) {
+		var audio = new Audio("messagesent.wav");
+		audio.play();
 	}).fail(function(jqXHR, textStatus) {
 		alert(jqXHR.responseText);
 	});
