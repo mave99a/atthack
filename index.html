@@ -50,7 +50,7 @@
 	    	<div id='information'>
 	    		<span id='distance'>0</span> miles to destination
 	    		<span id='timeleft'>0</span> minutes to destination
-	    	</div><br/>
+	    	</div>
 		<div id='autonotify'>
 			Auto send SMS to friend when I am:<br/><br/>
 			<div class="onoffswitch">
@@ -72,21 +72,22 @@
 			</div>
 			5 miles away
 		</div>
-		<br /><br/>
+		<br />
+		<span class="onoffswitch">
+			<input type="checkbox" name="onoffswitch"
+				class="onoffswitch-checkbox" id="cbIncludePosition" checked>
+			<label class="onoffswitch-label" for="cbIncludePosition">
+				<div class="onoffswitch-inner"></div>
+				<div class="onoffswitch-switch"></div>
+			</label>
+		</span> Include my position in SMS
+		<br/>
 		<div id='manualnotify'>
 			<button class='bigbutton' id="btnSendLocation">Send my location</button>
 			<button class='bigbutton' id="btnInTraffic">I will be late</button>
 			<button class='bigbutton' id="btnArrivingSoon">I am arriving soon</button>
 			<br/><br/>
-			<button class='bigbutton' id="callphone">Call Alex Now...</button>&nbsp;&nbsp;
-			<span class="onoffswitch">
-				<input type="checkbox" name="onoffswitch"
-					class="onoffswitch-checkbox" id="cbIncludePosition" checked>
-				<label class="onoffswitch-label" for="cbIncludePosition">
-					<div class="onoffswitch-inner"></div>
-					<div class="onoffswitch-switch"></div>
-				</label>
-			</span> Include my position in SMS
+			<button class='bigbutton' id="callphone">Call friend Now...</button>&nbsp;&nbsp;
 		</div>
 	</div>
     </body>
