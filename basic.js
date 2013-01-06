@@ -16,7 +16,7 @@ GOOGLE_OAUTH_REFRESH_TOKEN = '1/DHizid19rsXNH35IHh6MpzZyvaZRPJ8zA4a37pArD78';
 //  Get Oauth token here:
 //   https://developers.google.com/oauthplayground/?code=4/lAw3rs_qZTiEohO9vZedxr21BBPj.0qML9mvQSr4UuJJVnL49Cc90-hQaeAI
 //
-GOOGLE_OATH_TOKEN = 'ya29.AHES6ZRoJNmarbvD-A0Cc7YRjPDTxDs80TM_-Wh4rQ3mbiPNptSYCg';
+GOOGLE_OATH_TOKEN = 'ya29.AHES6ZTdisT8NJHQhRHw7VxhU3hJjwoOVmL_27dZhggtQY7L69ZkRDE';
 
 var currentDest = null; 
 var notificationDistances = [1, 5];
