@@ -118,7 +118,34 @@ function init()
 	        maximumAge: 30000,
 	        timeout: 30000,
 	        frequency: 1000
-	    });
+	    }
+	);
+	
+	$("#btnSendLocation").click(function() {
+		getCurrentLocation(function(lat, lng) {
+        	sendSMS(recipient, "Robert's current location: " + getMapUrl(lat, lng));
+		});
+	});
+
+	$("#btnInTraffic").click(function() {
+		getCurrentLocation(function(lat, lng) {
+			var message = "Robert's currently behind schedule.";
+			if ($('#cbIncludPosition').is(':checked')) {
+				message += " Current location: " + getMapUrl(lat, lng);
+			}
+			sendSMS(recipient,  message);
+		});
+	});
+
+	$("#btnArrivingSoon").click(function() {
+		getCurrentLocation(function(lat, lng) {
+			var message = "Robert will arrive shortly.";
+			if ($('#cbIncludPosition').is(':checked')) {
+				message += " Current location: " + getMapUrl(lat, lng);
+			}
+			sendSMS(recipient,  message);
+		});
+	});
 }
 
 $(function(){
@@ -185,4 +212,28 @@ function calcDistance(lat1, lng1, lat2, lng2)
 	        Math.sin(dLng/2) * Math.sin(dLng/2) * Math.cos(lat1) * Math.cos(lat2); 
 	var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a)); 
 	return d = R * c * 0.621371;
+}
+
+function getCurrentLocation(callback) {
+	gm.info.getCurrentPosition(
+	    function(positionObj) {
+	        console.log('Success: getCurrentPosition.');
+	        var lat = positionObj.coords.latitude / (3600 * 1000);
+	        var lng = positionObj.coords.longitude / (3600 * 1000);
+	        callback(lat, lng);
+	    },
+	    function() {
+	        console.log('Failure: getCurrentPosition. May need to load route in emulator.');
+	    },
+	    {
+	        maximumAge: 30000,
+	        timeout: 30000,
+	        frequency: 60000
+	    }
+	);		
+}
+
+function getMapUrl(lat, lng)
+{
+    return "http://maps.google.com/?q=" + lat + "," + lng;
 }
