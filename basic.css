@@ -112,6 +112,25 @@ body {
 	padding: 10px;
 }
 
+@-webkit-keyframes slide {
+    from{
+		background: RGBA(255,255,255,.5);
+    }
+    to{
+		background: RGBA(255,255,255,.1);
+    }
+}
+#incoming {
+	position: absolute; 
+	right: 10px; 
+	top: 70px; 
+	background: RGBA(255,255,255,.5);
+	-webkit-animation: slide 1s ease-in-out infinite;
+	padding: 10px;
+	border-radius: 10px;
+	display: none;
+}
+
 .number {
 	font-size: 30px;
 }

@@ -16,7 +16,7 @@ GOOGLE_OAUTH_REFRESH_TOKEN = '1/DHizid19rsXNH35IHh6MpzZyvaZRPJ8zA4a37pArD78';
 //  Get Oauth token here:
 //   https://developers.google.com/oauthplayground/?code=4/lAw3rs_qZTiEohO9vZedxr21BBPj.0qML9mvQSr4UuJJVnL49Cc90-hQaeAI
 //
-GOOGLE_OATH_TOKEN = 'ya29.AHES6ZQo2d1IKiyWCFvRY_St49t4l32j3Di-B_H60CNmEYJ94ua6_Q';
+GOOGLE_OATH_TOKEN = 'ya29.AHES6ZRoJNmarbvD-A0Cc7YRjPDTxDs80TM_-Wh4rQ3mbiPNptSYCg';
 
 var currentDest = null; 
 var notificationDistances = [1, 5];
@@ -301,7 +301,7 @@ function sendSMS(phoneNumber, message)
 					var messages = data['InboundSmsMessageList']['InboundSmsMessage'];
 					if (messages.length > 0) {
 						var message = messages[0]['Message'];
-						$("#incoming").html(message);
+						$("#incoming").html(message).show();
 						var audio = new Audio("newmessage.wav");
 						audio.play();
 					}
