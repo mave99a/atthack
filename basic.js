@@ -339,7 +339,7 @@ function sendSMS(phoneNumber, message)
 function speak(text)
 {
 	var xhr = new XMLHttpRequest();
-	xhr.open('POST', 'https://api.foundry.att.com/a1/speechalpha/texttospeech?access_token=n08bcodfjo7ddv8jemfqj7aw61bn4fkn', true);
+	xhr.open('POST', 'https://api.foundry.att.com/a1/speechalpha/texttospeech?access_token=ezmxi4r3qownzjljet6fqxjpdxhzzxlh', true);
 	xhr.responseType = 'arraybuffer';
 	
 	xhr.onload = function(e) {
