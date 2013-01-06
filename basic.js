@@ -18,6 +18,9 @@ GOOGLE_URL_SHORTENER = 'https://www.googleapis.com/urlshortener/v1/url';
 GOOGLE_OATH_TOKEN = 'ya29.AHES6ZQQPgVT3VDbvh8joSA_Qrumwlrm-Cz_V2fkBWNC6BA1WMoW184';
 
 var currentDest = null; 
+var notificationDistance = 1; // 1 mile
+var notificationSent = false;
+var recipient = '18155140539';
 
 function shortenUrl(url)
 {
@@ -101,6 +104,11 @@ function init()
 	    		//console.log('Timestamp: ' + positionObj.timestamp + ', Latitude: ' + positionObj.coords.latitude + ', Longitude: ' + positionObj.coords.longitude);	   
 	    		
 	    		$('#distance').text('' + remainDistance);
+
+		        if (distance < notificationDistance && ! notificationSent) {
+		        	sendSMS(recipient, "Robert is approximately 1 mile away.");
+		        	notificationSent = true;
+		        }
 	    	}
 	    },
 	    function() {
@@ -163,6 +171,7 @@ function sendSMS(phoneNumber, message)
 	});
 }
 
+// miles
 function calcDistance(lat1, lng1, lat2, lng2)
 {
 	//console.log('lat1, lng1, lat2, lng2: ' + lat1 + ',' + lng1 + ',' + lat2 + ',' + lng2);
@@ -175,5 +184,5 @@ function calcDistance(lat1, lng1, lat2, lng2)
 	var a = Math.sin(dLat/2) * Math.sin(dLat/2) +
 	        Math.sin(dLng/2) * Math.sin(dLng/2) * Math.cos(lat1) * Math.cos(lat2); 
 	var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a)); 
-	return d = R * c;
+	return d = R * c * 0.621371;
 }
