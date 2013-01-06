@@ -96,12 +96,13 @@ function init()
 	    	var lat = positionObj.coords.latitude / (3600 * 1000);
 	    	var lng = positionObj.coords.longitude / (3600 * 1000);
 	    	
-	    	var lat2 = 47;
-	    	var lng2 = -121;
-	        console.log('Remaining distance: ' + calcDistance(lat, lng, lat2, lng2));
+	    	if (currentDest) {
 
-	        console.log('Success: watchPosition.');
-	        console.log('Timestamp: ' + positionObj.timestamp + ', Latitude: ' + positionObj.coords.latitude + ', Longitude: ' + positionObj.coords.longitude);
+		        console.log('Remaining distance: ' + calcDistance(lat, lng, currentDest.lat(), currentDest.lng()));
+
+		        console.log('Success: watchPosition.');
+		        console.log('Timestamp: ' + positionObj.timestamp + ', Latitude: ' + positionObj.coords.latitude + ', Longitude: ' + positionObj.coords.longitude);	    		
+	    	}
 	    },
 	    function() {
 	        console.log('Failure: watchPosition. May need to load route in emulator.');
