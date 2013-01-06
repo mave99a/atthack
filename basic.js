@@ -15,7 +15,7 @@ GOOGLE_URL_SHORTENER = 'https://www.googleapis.com/urlshortener/v1/url';
 //  Get Oauth token here:
 //   https://developers.google.com/oauthplayground/?code=4/lAw3rs_qZTiEohO9vZedxr21BBPj.0qML9mvQSr4UuJJVnL49Cc90-hQaeAI
 //
-GOOGLE_OATH_TOKEN = 'ya29.AHES6ZQrpebotr8WIErdGlo1RVDhh8eZCdeUDnDLbiwfgwo';
+GOOGLE_OATH_TOKEN = 'ya29.AHES6ZR9NQbyAgAYZ6N-gce3M9Si2yqeGmtSNLfFp2LWnPM';
 
 var currentDest = null; 
 var notificationDistance = 2.8; // 1 mile
@@ -38,7 +38,8 @@ function getGoogleCalenderItem()
 			{
 				data: {
 					key: GOOGLE_APP_ID, 
-					q: 'test'
+					//q: 'test'
+					timeMin: (new Date()).toISOString()
 				},
 				headers: {
 					'Authorization': 'Bearer ' + GOOGLE_OATH_TOKEN
@@ -70,17 +71,19 @@ function handleEvents(data)
 	for (var i in data.items) {
 		var event = data.items[i];
 		
-		var item = $(tmpl('event_tmpl', event));
-		$('#event_selection_screen').append(item);
-		
-		if (event.location) {
-			var button = item.find('.setdest').show();
-			button.data('address', event.location);
-			(function (el) {
-				codeAddress(event.location, function(latlng) {
-					el.find('.setdest').data('latlng', latlng);
-				});				
-			}(item));
+		if (event.start) {
+			var item = $(tmpl('event_tmpl', event));
+			$('#event_selection_screen').append(item);
+			
+			if (event.location) {
+				var button = item.find('.setdest').show();
+				button.data('address', event.location);
+				(function (el) {
+					codeAddress(event.location, function(latlng) {
+						el.find('.setdest').data('latlng', latlng);
+					});				
+				}(item));
+			}
 		}
 	}
 }
