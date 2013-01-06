@@ -89,6 +89,17 @@ function showGoogleCalenderItem()
 function init()
 {
 	sendSMS('18155140539', 'test message');
+
+	var watchDestinationID = gm.nav.watchDestination(
+	    function(responseObj) {
+	    	var lat = responseObj.latitude;
+	    	var lng = responseObj.longitude;
+	        console.log('Success: watchDestination. Address: ' + lat + ',' + lng);
+	    },
+	    function() {
+	        console.log('Failure: watchDestination.');
+	    }
+	);	
 }
 
 $(function(){
@@ -126,8 +137,7 @@ function sendSMS(phoneNumber, message)
 		},
 		'data': {'Address': 'tel:' + phoneNumber, 'Message': message}
 	}).done(function(data) {
-		alert('data');
-	}).fail(function(error) {
-		alert('error' + error);
+	}).fail(function(jqXHR, textStatus) {
+		alert(jqXHR.responseText);
 	});
 }
