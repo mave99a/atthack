@@ -15,7 +15,7 @@ GOOGLE_URL_SHORTENER = 'https://www.googleapis.com/urlshortener/v1/url';
 //  Get Oauth token here:
 //   https://developers.google.com/oauthplayground/?code=4/lAw3rs_qZTiEohO9vZedxr21BBPj.0qML9mvQSr4UuJJVnL49Cc90-hQaeAI
 //
-GOOGLE_OATH_TOKEN = 'ya29.AHES6ZR9NQbyAgAYZ6N-gce3M9Si2yqeGmtSNLfFp2LWnPM';
+GOOGLE_OATH_TOKEN = 'ya29.AHES6ZSnq1cZQ5HUDdQ4g0i3O-OVzfcL56WXV-M9JvIf9HE';
 
 var currentDest = null; 
 var notificationDistances = [];
@@ -268,4 +268,34 @@ function getCurrentLocation(callback) {
 function getMapUrl(lat, lng)
 {
     return "http://maps.google.com/?q=" + lat + "," + lng;
+}
+
+function timeSince(date) {
+
+    var seconds = Math.floor((new Date() - date) / 1000);
+    
+    seconds = Math.abs(seconds);
+    
+    var interval = Math.floor(seconds / 31536000);
+
+    if (interval > 1) {
+        return interval + " years";
+    }
+    interval = Math.floor(seconds / 2592000);
+    if (interval > 1) {
+        return interval + " months";
+    }
+    interval = Math.floor(seconds / 86400);
+    if (interval > 1) {
+        return interval + " days";
+    }
+    interval = Math.floor(seconds / 3600);
+    if (interval > 1) {
+        return interval + " hours";
+    }
+    interval = Math.floor(seconds / 60);
+    if (interval > 1) {
+        return interval + " minutes";
+    }
+    return "1 minute"; //Math.floor(seconds) + " seconds";
 }
