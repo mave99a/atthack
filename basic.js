@@ -89,8 +89,8 @@ function init()
 {
 	watchPositionID = gm.info.watchPosition(
 	    function(positionObj) {
-	    	var lat = positionObj.coords.latitude / 1000000;
-	    	var lng = positionObj.coords.longitude / 1000000;
+	    	var lat = positionObj.coords.latitude / (3600 * 1000);
+	    	var lng = positionObj.coords.longitude / (3600 * 1000);
 	    	
 	    	var lat2 = 47;
 	    	var lng2 = -121;
