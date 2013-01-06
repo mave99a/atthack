@@ -19,7 +19,7 @@ GOOGLE_OAUTH_REFRESH_TOKEN = '1/DHizid19rsXNH35IHh6MpzZyvaZRPJ8zA4a37pArD78';
 GOOGLE_OATH_TOKEN = 'ya29.AHES6ZT9P-tOmD0rl3IYsLM0rU_rrJDlCdXMKyjoxkQF0jU';
 
 var currentDest = null; 
-var notificationDistances = [];
+var notificationDistances = [1, 5];
 var notificationSentDistance = 1000000;
 var recipient = '18155140539';
 
