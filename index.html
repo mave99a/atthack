@@ -46,25 +46,37 @@
     	<h2>Upcoming Appointments</h2>
     	</div>
 	    <div class='screen' id="in_progress_screen" style='display:none;'>
-	    	<a href='#' id='back_event_selection'> Back </a>
+	    	<a href='#' id='back_event_selection'>&laquo;</a>
 	    	<div id='information'>
 	    		<span id='distance'>0</span> miles to destination
 	    		<span id='timeleft'>0</span> minutes to destination
 	    	</div>
 	    	<div id='autonotify'>
 	    	Auto send SMS to friend when I am: 
-	    	<input id="cbOneMile" type='checkbox' /><label for="cbOneMile">1 mile away</label>
-	    	<input id="cbFiveMile" type='checkbox' /><label for="cbFiveMile">5 mile away</label>
+<div class="onoffswitch">
+    <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="cbOneMile" checked>
+    <label class="onoffswitch-label" for="cbOneMile">
+        <div class="onoffswitch-inner"></div>
+        <div class="onoffswitch-switch"></div>
+    </label>
+</div>1 mile away
+<div class="onoffswitch">
+    <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="cbFiveMile" checked>
+    <label class="onoffswitch-label" for="cbFiveMile">
+        <div class="onoffswitch-inner"></div>
+        <div class="onoffswitch-switch"></div>
+    </label>
+</div>5 mile away
 	    	</div>
 	    	<div id='manualnotify'>    	
-	    	<button class='bigbutton' id="btnSendLocation">Tell my friend Where I am</button>
+	    	<button class='bigbutton' id="btnSendLocation">Tell my friend where I am</button>
 	    	<button class='bigbutton' id="btnInTraffic">In traffic / I am going to late</button>
 	    	<button class='bigbutton' id="btnArrivingSoon">I am arriving soon</button>	    	
-	    	<input id="cbIncludePosition" type='checkbox' /><label for="cbIncludePosition">Include my position in SMS</label>
+	    	Include my position in SMS
 	    	<button class='bigbutton' id="btnArrivingSoon">Call Alex Now...</button>	    	
 <div class="onoffswitch">
-    <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch" checked>
-    <label class="onoffswitch-label" for="myonoffswitch">
+    <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="cbIncludePosition" checked>
+    <label class="onoffswitch-label" for="cbIncludePosition">
         <div class="onoffswitch-inner"></div>
         <div class="onoffswitch-switch"></div>
     </label>

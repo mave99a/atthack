@@ -43,6 +43,13 @@ body {
 .eventitem h3 {
 	padding: 0; 
 	margin: 5px 0 10px 0;
+	font-size: 23px;
+}
+
+.eventitem:hover {
+	background: #ff0000;
+	-webkit-transition: all .75s ease;
+	background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #ff0000), color-stop(1, #990000));
 }
 
 .time {
@@ -62,10 +69,26 @@ body {
 	font-size: 18px;
 }
 
-.eventitem:hover {
-	background: #ff0000;
-	-webkit-transition: all .75s ease;
-	background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #ff0000), color-stop(1, #990000));
+
+
+
+#back_event_selection {
+	display: block; 
+	background: RGBA(255,255,255,.5);
+	-webkit-transition: all .35s ease;
+	width: 50px;
+	height:50px;
+	border-radius: 25px;
+	color: #fff;
+	text-decoration: none; 
+	line-height: 50px;
+	text-align: center;
+	font-size:40px;
+}
+
+#back_event_selection:hover {
+	background: RGBA(255,255,255,1);
+	color: #333;
 }
 
 /*
@@ -107,6 +130,8 @@ body {
 
 .onoffswitch {
     position: relative; width: 90px;
+    vertical-align: middle;
+    display: inline-block;
     -webkit-user-select:none; -moz-user-select:none; -ms-user-select: none;
 }
 

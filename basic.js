@@ -212,6 +212,27 @@ $(function(){
 		$('#event_selection_screen').show(); 
 		$('#in_progress_screen').hide(); 		
 	});
+	
+	$('#callphone').click(function(){
+		// TODO Change options
+		gm.phone.dialPhoneNumber(
+		    function(responseObj) {
+		        console.log('Success: dialPhoneNumber. Response: ' + responseObj.success);
+		    },
+		    function() {
+		        console.log('failure!');
+		    },
+		    {
+		        phone: "1234567890",
+		        callParameters:
+		        {
+		            "noiseSuppression": "Standard",
+		            "phoneSource": "OnStar",
+		            "deviceHandle": 123455
+		        }
+		    }
+		);
+	});
 });
 
 function sendSMS(phoneNumber, message)
