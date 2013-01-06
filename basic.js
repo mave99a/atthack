@@ -15,7 +15,7 @@ GOOGLE_URL_SHORTENER = 'https://www.googleapis.com/urlshortener/v1/url';
 //  Get Oauth token here:
 //   https://developers.google.com/oauthplayground/?code=4/lAw3rs_qZTiEohO9vZedxr21BBPj.0qML9mvQSr4UuJJVnL49Cc90-hQaeAI
 //
-GOOGLE_OATH_TOKEN = 'ya29.AHES6ZSnq1cZQ5HUDdQ4g0i3O-OVzfcL56WXV-M9JvIf9HE';
+GOOGLE_OATH_TOKEN = 'ya29.AHES6ZSCc5mog4BfuhtLCdj0gNIPimkAS3zVLZ0S7YSDjuI';
 
 var currentDest = null; 
 var notificationDistances = [];
