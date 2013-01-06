@@ -34,12 +34,15 @@ function shortenUrl(url)
 
 function getGoogleCalenderItem()
 {
+	var tomorrow = new Date(); tomorrow.setDate(tomorrow.getDate() + 1);
+	
 	return $.ajax(GOOGLE_CALENDER_URL, 
 			{
 				data: {
 					key: GOOGLE_APP_ID, 
 					//q: 'test'
-					timeMin: (new Date()).toISOString()
+					timeMin: (new Date()).toISOString(),
+					timeMax: tomorrow.toISOString()
 				},
 				headers: {
 					'Authorization': 'Bearer ' + GOOGLE_OATH_TOKEN
