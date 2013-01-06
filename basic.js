@@ -42,7 +42,8 @@ function getGoogleCalenderItem()
 					key: GOOGLE_APP_ID, 
 					//q: 'test'
 					timeMin: (new Date()).toISOString(),
-					timeMax: tomorrow.toISOString()
+					timeMax: tomorrow.toISOString(),
+					maxResults: 10
 				},
 				headers: {
 					'Authorization': 'Bearer ' + GOOGLE_OATH_TOKEN
