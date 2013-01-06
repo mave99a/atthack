@@ -130,7 +130,7 @@ function init()
 	$("#btnInTraffic").click(function() {
 		getCurrentLocation(function(lat, lng) {
 			var message = "Robert's currently behind schedule.";
-			if ($('#cbIncludPosition').is(':checked')) {
+			if ($('#cbIncludePosition').is(':checked')) {
 				message += " Current location: " + getMapUrl(lat, lng);
 			}
 			sendSMS(recipient,  message);
@@ -140,7 +140,7 @@ function init()
 	$("#btnArrivingSoon").click(function() {
 		getCurrentLocation(function(lat, lng) {
 			var message = "Robert will arrive shortly.";
-			if ($('#cbIncludPosition').is(':checked')) {
+			if ($('#cbIncludePosition').is(':checked')) {
 				message += " Current location: " + getMapUrl(lat, lng);
 			}
 			sendSMS(recipient,  message);
