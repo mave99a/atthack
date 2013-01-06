@@ -18,7 +18,7 @@ GOOGLE_URL_SHORTENER = 'https://www.googleapis.com/urlshortener/v1/url';
 GOOGLE_OATH_TOKEN = 'ya29.AHES6ZQrpebotr8WIErdGlo1RVDhh8eZCdeUDnDLbiwfgwo';
 
 var currentDest = null; 
-var notificationDistance = 1; // 1 mile
+var notificationDistance = 2.8; // 1 mile
 var notificationSent = false;
 var recipient = '18155140539';
 
@@ -105,7 +105,7 @@ function init()
 	    		
 	    		$('#distance').text('' + remainDistance);
 
-		        if (distance < notificationDistance && ! notificationSent) {
+		        if (remainDistance < notificationDistance && ! notificationSent) {
 		        	sendSMS(recipient, "Robert is approximately 1 mile away.");
 		        	notificationSent = true;
 		        }
