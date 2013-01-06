@@ -82,11 +82,10 @@ function handleEvents(data)
 			$('#event_selection_screen').append(item);
 			
 			if (event.location) {
-				var button = item.find('.setdest').show();
-				button.data('address', event.location);
+				item.data('address', event.location);
 				(function (el) {
 					codeAddress(event.location, function(latlng) {
-						el.find('.setdest').data('latlng', latlng);
+						el.data('latlng', latlng);
 					});				
 				}(item));
 			}
@@ -215,6 +214,12 @@ function addRemoveNotificationMile(checked, m)
 $(function(){
 	showGoogleCalenderItem();
 	$('.setdest').live('click',function() {
+	});
+	
+	$('.eventitem').live('click', function() {
+		$('#event_selection_screen').hide(); 
+		$('#in_progress_screen').show(); 
+
 		var address = $(this).data('address');
 		currentDest = $(this).data('latlng');
 		console.log('set new destination to ' + address + ' ' + currentDest);
@@ -233,11 +238,6 @@ $(function(){
 		        //"zip": "48226"
 		    }
 		);
-	});
-	
-	$('.eventitem').live('click', function() {
-		$('#event_selection_screen').hide(); 
-		$('#in_progress_screen').show(); 
 	});
 	
 	$('#back_event_selection').click(function(){
