@@ -18,8 +18,8 @@ GOOGLE_URL_SHORTENER = 'https://www.googleapis.com/urlshortener/v1/url';
 GOOGLE_OATH_TOKEN = 'ya29.AHES6ZR9NQbyAgAYZ6N-gce3M9Si2yqeGmtSNLfFp2LWnPM';
 
 var currentDest = null; 
-var notificationDistance = 2.8; // 1 mile
-var notificationSent = false;
+var notificationDistances = [];
+var notificationSentDistance = 1000000;
 var recipient = '18155140539';
 
 function shortenUrl(url)
@@ -112,10 +112,13 @@ function init()
 	    		
 	    		$('#distance').text('' + remainDistance);
 
-		        if (remainDistance < notificationDistance && ! notificationSent) {
-		        	sendSMS(recipient, "Robert is approximately 1 mile away.");
-		        	notificationSent = true;
-		        }
+	    		for (var i in notificationDistances) {
+	    			var dist = notificationDistances[i];
+			        if (remainDistance < dist && dist < notificationSentDistance) {
+			        	sendSMS(recipient, "Robert is approximately " + Math.round(remainDistance * 10) / 10 + " miles away.");
+			        	notificationSentDistance = remainDistance;
+			        }	
+	    		}
 	    	}
 	    },
 	    function() {
@@ -153,6 +156,28 @@ function init()
 			sendSMS(recipient,  message);
 		});
 	});
+	
+	$("#cbOneMile").click(function() {
+		addRemoveNotificationMile($('#cbOneMile').is(':checked'), 1);
+	});
+
+	$("#cbFiveMile").click(function() {
+		addRemoveNotificationMile($('#cbFileMile').is(':checked'), 5);
+	});
+}
+
+function addRemoveNotificationMile(checked, m)
+{
+	if (checked) {
+		if (notificationDistances.indexOf(m) == -1) {
+			notificationDistances.push(m);
+		}
+	} else {
+		var index = notificationDistances.indexOf(m);
+		if (index >= 0) {
+			array.splice(index,1);
+		}
+	}
 }
 
 $(function(){
