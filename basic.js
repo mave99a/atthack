@@ -70,9 +70,11 @@ function handleEvents(data)
 		$('#output').append(item);
 		
 		if (event.location) {
+			var button = item.find('.setdest').show();
+			button.data('address', event.location);
 			(function (el) {
 				codeAddress(event.location, function(latlng) {
-					$.data(el.find('.setdest').show(), 'latlng', latlng);
+					el.find('.setdest').data('latlng', latlng);
 				});				
 			}(item));
 		}
@@ -104,25 +106,23 @@ function init()
 
 $(function(){
 	$('.setdest').live('click',function() {
-		var latlng = $.data($(this), 'latlng');
-		if (latlng) {
-			alert(latlng);
-			gm.nav.setDestination(
-			    function(responseObj) {
-			        console.log('Success: setDestination.');
-			    },
-			    function() {
-			        console.log('Failure: setDestination.');
-			    },
-			    {
-			        "state" : "MI",
-			        "city" : "Detroit",
-			        "street" : "Campus Martius",
-			        "house": "1",
-			        "zip": "48226"
-			    }
-			);
-		}
+		var address = $(this).data('address');
+		console.log('set new destination to ' + address);
+		gm.nav.setDestination(
+		    function(responseObj) {
+		        console.log('Success: setDestination.');
+		    },
+		    function() {
+		        console.log('Failure: setDestination.');
+		    },
+		    {
+		        //"state" : "MI",
+		        //"city" : "Detroit",
+		        "street" : address,
+		        //"house": "1",
+		        //"zip": "48226"
+		    }
+		);
 	});
 });
 
