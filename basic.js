@@ -304,6 +304,29 @@ function sendSMS(phoneNumber, message)
 						$("#incoming").html(message).show();
 						var audio = new Audio("newmessage.wav");
 						audio.play();
+						window.setTimeout(function() {
+							  var xhr = new XMLHttpRequest();
+							  xhr.open('POST', 'https://api.foundry.att.com/a1/speechalpha/texttospeech?access_token=n08bcodfjo7ddv8jemfqj7aw61bn4fkn', true);
+							  xhr.responseType = 'arraybuffer';
+
+							  xhr.onload = function(e) {
+								  playSound(xhr.response);
+							  };
+
+							  xhr.send(message);
+						}, 1000);
+						  /*
+						$.ajax({
+							'type': 'POST',
+							'url': 'https://api.foundry.att.com/a1/speechalpha/texttospeech',
+							'headers': {
+								'Authorization': 'Bearer n08bcodfjo7ddv8jemfqj7aw61bn4fkn'
+							},
+							'data': message
+						}).done(function(data){
+							playSound(data);
+						});
+						*/
 					}
 				}).fail(function(jqXHR, textStatus) {
 					alert(jqXHR.responseText);
@@ -314,6 +337,16 @@ function sendSMS(phoneNumber, message)
 		}
 	}).fail(function(jqXHR, textStatus) {
 		alert(jqXHR.responseText);
+	});
+}
+
+function playSound(data) {
+	var context = new webkitAudioContext();
+	context.decodeAudioData(data, function(buffer) {
+		var source = context.createBufferSource(); // creates a sound source
+		source.buffer = buffer;                    // tell the source which sound to play
+		source.connect(context.destination);       // connect the source to the context's destination (the speakers)
+		source.noteOn(0);                          // play the source now
 	});
 }
 
