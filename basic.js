@@ -83,6 +83,7 @@ function handleEvents(data)
 			
 			if (event.location) {
 				item.data('address', event.location);
+				item.data('event', event);
 				(function (el) {
 					codeAddress(event.location, function(latlng) {
 						el.data('latlng', latlng);
@@ -217,11 +218,16 @@ $(function(){
 	});
 	
 	$('.eventitem').live('click', function() {
+		var event =  $(this).data('event');
+		var address = event.location;
+		currentDest = $(this).data('latlng');
+
 		$('#event_selection_screen').hide(); 
 		$('#in_progress_screen').show(); 
 
-		var address = $(this).data('address');
-		currentDest = $(this).data('latlng');
+		$('#event_title').text(event.summary);
+		$('#event_time').text(formatCalendarTime(new Date(event.start.dateTime)));
+		$('#event_address').text(address);
 		console.log('set new destination to ' + address + ' ' + currentDest);
 		gm.nav.setDestination(
 		    function(responseObj) {
