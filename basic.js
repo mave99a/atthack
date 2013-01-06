@@ -165,6 +165,25 @@ function init()
 	$("#cbFiveMile").click(function() {
 		addRemoveNotificationMile($('#cbFileMile').is(':checked'), 5);
 	});
+
+	/*
+	$.ajax({
+		'type': 'POST',
+		'url': 'https://accounts.google.com/o/oauth2/token',
+		'headers': {
+			'Content-Type': 'application/x-www-form-urlencoded'
+		},
+		'data': {
+			'client_id': 
+			'client_secret':
+			'refresh_token': GOOGLE_OAUTH_REFRESH_TOKEN,
+			'grant_type': 'refresh_token'
+		}
+	}).done(function(data) {
+	}).fail(function(jqXHR, textStatus) {
+		alert(jqXHR.responseText);
+	});
+	*/
 }
 
 function addRemoveNotificationMile(checked, m)
