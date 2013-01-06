@@ -90,18 +90,26 @@ function showGoogleCalenderItem()
 
 function init()
 {
-	sendSMS('18155140539', 'test message');
+	watchPositionID = gm.info.watchPosition(
+	    function(positionObj) {
+	    	var lat = positionObj.coords.latitude / 1000000;
+	    	var lng = positionObj.coords.longitude / 1000000;
+	    	
+	    	var lat2 = 47;
+	    	var lng2 = -121;
+	        console.log('Remaining distance: ' + calcDistance(lat, lng, lat2, lng2));
 
-	var watchDestinationID = gm.nav.watchDestination(
-	    function(responseObj) {
-	    	var lat = responseObj.latitude;
-	    	var lng = responseObj.longitude;
-	        console.log('Success: watchDestination. Address: ' + lat + ',' + lng);
+	        console.log('Success: watchPosition.');
+	        console.log('Timestamp: ' + positionObj.timestamp + ', Latitude: ' + positionObj.coords.latitude + ', Longitude: ' + positionObj.coords.longitude);
 	    },
 	    function() {
-	        console.log('Failure: watchDestination.');
-	    }
-	);	
+	        console.log('Failure: watchPosition. May need to load route in emulator.');
+	    },
+	    {
+	        maximumAge: 30000,
+	        timeout: 30000,
+	        frequency: 1000
+	    });
 }
 
 $(function(){
@@ -140,4 +148,19 @@ function sendSMS(phoneNumber, message)
 	}).fail(function(jqXHR, textStatus) {
 		alert(jqXHR.responseText);
 	});
+}
+
+function calcDistance(lat1, lng1, lat2, lng2)
+{
+	console.log('lat1, lng1, lat2, lng2: ' + lat1 + ',' + lng1 + ',' + lat2 + ',' + lng2);
+	var R = 6371; // km
+	var dLat = (lat2-lat1) * Math.PI / 180;
+	var dLng = (lng2-lng1) * Math.PI / 180;
+	var lat1 = lat1 * Math.PI / 180;
+	var lat2 = lat2 * Math.PI / 180;
+
+	var a = Math.sin(dLat/2) * Math.sin(dLat/2) +
+	        Math.sin(dLng/2) * Math.sin(dLng/2) * Math.cos(lat1) * Math.cos(lat2); 
+	var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a)); 
+	return d = R * c;
 }
