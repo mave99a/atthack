@@ -15,8 +15,9 @@ GOOGLE_URL_SHORTENER = 'https://www.googleapis.com/urlshortener/v1/url';
 //  Get Oauth token here:
 //   https://developers.google.com/oauthplayground/?code=4/lAw3rs_qZTiEohO9vZedxr21BBPj.0qML9mvQSr4UuJJVnL49Cc90-hQaeAI
 //
-GOOGLE_OATH_TOKEN = 'ya29.AHES6ZQhZ2DWGOoDvU1gmVFw1CrjBGpxKRfDoQ90ppkr3qLKSXNVT6w';
+GOOGLE_OATH_TOKEN = 'ya29.AHES6ZQQPgVT3VDbvh8joSA_Qrumwlrm-Cz_V2fkBWNC6BA1WMoW184';
 
+var currentDest = null; 
 
 function shortenUrl(url)
 {
@@ -115,7 +116,8 @@ function init()
 $(function(){
 	$('.setdest').live('click',function() {
 		var address = $(this).data('address');
-		console.log('set new destination to ' + address);
+		currentDest = $(this).data('latlng');
+		console.log('set new destination to ' + address + ' ' + currentDest);
 		gm.nav.setDestination(
 		    function(responseObj) {
 		        console.log('Success: setDestination.');
