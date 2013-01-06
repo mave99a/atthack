@@ -24,7 +24,7 @@
 		<script type="text/html" id="event_tmpl">
 			<div class="eventitem">
               <h3><%=summary%></h3>
-			  from: <%=(new Date(start.dateTime))%>  (<%=timeSince(new Date(start.dateTime))%>)<br/>
+			  <%=(new Date(start.dateTime))%>  (in <%=timeSince(new Date(start.dateTime))%>)<br/>
 	          <%=location%> <span class="latlng"></span><button class="setdest" style="display:none;">Set as destination</button><br/>
 			</div>
  		</script>
