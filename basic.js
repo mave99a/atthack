@@ -10,6 +10,7 @@ GOOGLE_APP_ID = '407408718192.apps.googleusercontent.com';
 GOOGLE_CALENDER_URL = 'https://www.googleapis.com/calendar/v3/calendars/primary/events';
 GOOGLE_URL_SHORTENER = 'https://www.googleapis.com/urlshortener/v1/url';
 
+GOOGLE_OAUTH_REFRESH_TOKEN = '1/DHizid19rsXNH35IHh6MpzZyvaZRPJ8zA4a37pArD78'; 
 //!!!NOTE!!!: Change OAuth token since it normally expire in 1 hour
 //  
 //  Get Oauth token here:
