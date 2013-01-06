@@ -48,8 +48,8 @@
 	    <div class='screen' id="in_progress_screen" style='display:none;padding:0 8px;'>
 	    	<a href='#' id='back_event_selection'>&laquo;</a>
 	    	<div id='information'>
-	    		<span id='distance'>0</span> miles to destination
-	    		<span id='timeleft'>0</span> minutes to destination
+	    		<span class='number' id='distance'></span> miles 
+	    		<span class='number' id='timeleft'></span>
 	    	</div>
 		<div id='autonotify'>
 			Auto send SMS to friend when I am:<br/><br/>
@@ -71,24 +71,26 @@
 				</label>
 			</div>
 			5 miles away
+			<span class="onoffswitch">
+				<input type="checkbox" name="onoffswitch"
+					class="onoffswitch-checkbox" id="cbIncludePosition" checked>
+				<label class="onoffswitch-label" for="cbIncludePosition">
+					<div class="onoffswitch-inner"></div>
+					<div class="onoffswitch-switch"></div>
+				</label>
+			</span> Include my position in SMS
+			<br/>
 		</div>
-		<br />
-		<span class="onoffswitch">
-			<input type="checkbox" name="onoffswitch"
-				class="onoffswitch-checkbox" id="cbIncludePosition" checked>
-			<label class="onoffswitch-label" for="cbIncludePosition">
-				<div class="onoffswitch-inner"></div>
-				<div class="onoffswitch-switch"></div>
-			</label>
-		</span> Include my position in SMS
-		<br/>
 		<div id='manualnotify'>
+			<br/>
+			Push a button to let friend know:<br/><br/>
 			<button class='bigbutton' id="btnSendLocation">Send my location</button>
 			<button class='bigbutton' id="btnInTraffic">I will be late</button>
 			<button class='bigbutton' id="btnArrivingSoon">I am arriving soon</button>
 			<br/><br/>
 			<button class='bigbutton' id="callphone">Call friend Now...</button>&nbsp;&nbsp;
 		</div>
+		<div id='incoming'></div>
 	</div>
     </body>
 </html>

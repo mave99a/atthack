@@ -16,7 +16,7 @@ GOOGLE_OAUTH_REFRESH_TOKEN = '1/DHizid19rsXNH35IHh6MpzZyvaZRPJ8zA4a37pArD78';
 //  Get Oauth token here:
 //   https://developers.google.com/oauthplayground/?code=4/lAw3rs_qZTiEohO9vZedxr21BBPj.0qML9mvQSr4UuJJVnL49Cc90-hQaeAI
 //
-GOOGLE_OATH_TOKEN = 'ya29.AHES6ZTHsxIdv2OG5GsFXj_daBVx66HE602a878SrMCFLp857B6AYA';
+GOOGLE_OATH_TOKEN = 'ya29.AHES6ZQo2d1IKiyWCFvRY_St49t4l32j3Di-B_H60CNmEYJ94ua6_Q';
 
 var currentDest = null; 
 var notificationDistances = [1, 5];
@@ -100,6 +100,17 @@ function showGoogleCalenderItem()
 	});
 }
 
+function time2dest(dist)
+{
+	var hours = dist/45;
+	
+	if (hours > 1) {
+		return hours.toFixed(1) + ' <span>hours</span>';
+	}
+	
+	return (hours * 60).toFixed(0) + ' <span>minutes</span>';
+}
+
 function init()
 {
 	watchPositionID = gm.info.watchPosition(
@@ -111,8 +122,8 @@ function init()
 	    		var remainDistance = calcDistance(lat, lng, currentDest.lat(), currentDest.lng());
 	    		//console.log('Timestamp: ' + positionObj.timestamp + ', Latitude: ' + positionObj.coords.latitude + ', Longitude: ' + positionObj.coords.longitude);	   
 	    		
-	    		$('#distance').text('' + remainDistance);
-
+	    		$('#distance').text(remainDistance.toFixed(2));
+	    		$('#timeleft').html(time2dest(remainDistance));
 	    		for (var i in notificationDistances) {
 	    			var dist = notificationDistances[i];
 			        if (remainDistance < dist && dist < notificationSentDistance) {
