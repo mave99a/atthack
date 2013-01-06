@@ -24,7 +24,10 @@
 		<script type="text/html" id="event_tmpl">
 			<div class="eventitem">
               <h3><%=summary%></h3>
-			  <%=(new Date(start.dateTime))%>  (in <%=timeSince(new Date(start.dateTime))%>)<br/>
+			  <div class="time">
+			   <div class="at"><%=(formatCalendarTime(new Date(start.dateTime)))%>  </div>
+			   <div class="in">in <%=timeSince(new Date(start.dateTime))%></div>
+			  </div>
 	          <%=location%> <span class="latlng"></span><button class="setdest" style="display:none;">Set as destination</button><br/>
 			</div>
  		</script>
@@ -40,7 +43,7 @@
 	    <div id="loadingScreen">
 	    </div>
     	<div class='screen' id='event_selection_screen'>
-    	<h2>Your upcoming schedule:</h2>
+    	<h2>Upcoming Appointments</h2>
     	</div>
 	    <div class='screen' id="in_progress_screen" style='display:none;'>
 	    	<a href='#' id='back_event_selection'> Back </a>

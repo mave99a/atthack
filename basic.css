@@ -22,18 +22,48 @@ body {
 
 .screen {
 	z-index: 999;
+	-webkit-transition: all .75s ease;
+}
+
+.screen h2 {
+	text-align: center; 
+	width: 100%;
 }
 
 .eventitem {
-	width:90%; 
+	width:760px; 
 	margin:10px; 
 	padding:10px; 
-	border: 2px solid #000055;
+	border: 3px solid RGBA(255,255,255, 0.5);
 	border-radius: 10px;
 	color: #fff;
+	position: relative; 
+}
+
+.eventitem h3 {
+	padding: 0; 
+	margin: 5px 0 10px 0;
+}
+
+.time {
+	width: 100px; 
+	height: 90px; 
+	position: absolute; 
+	right: 10px; 
+	top: 10px; 
+	text-align: center; 
+}
+
+.time .at {
+	font-size: 25px; 
+}
+
+.time .in {
+	font-size: 18px;
 }
 
 .eventitem:hover {
 	background: #ff0000;
 	-webkit-transition: all .75s ease;
+	background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #ff0000), color-stop(1, #990000));
 }
