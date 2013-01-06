@@ -22,6 +22,7 @@ var currentDest = null;
 var notificationDistances = [1, 5];
 var notificationSentDistance = 1000000;
 var recipient = '18155140539';
+var waitingForReply = false;
 
 function shortenUrl(url)
 {
@@ -279,6 +280,30 @@ function sendSMS(phoneNumber, message)
 	}).done(function(data) {
 		var audio = new Audio("messagesent.wav");
 		audio.play();
+		if (!waitingForReply) {
+			window.setInterval(function() {
+				console.log("Polling to get SMS.");
+				$.ajax({
+					'type': 'GET',
+					'url': 'https://api.att.com/rest/sms/2/messaging/inbox?RegistrationID=30958501',
+					'headers': {
+						'Authorization': 'Bearer ' + ATT_OAUTH_TOKEN,
+						'Content-Type': 'application/json'
+					}
+				}).done(function(data){
+					console.log("SMS reply: " + data.toString());
+					var messages = data['InboundSmsMessageList']['InboundSmsMessage'];
+					if (messages.length > 0) {
+						var message = messages[0]['Message'];
+						alert(message);
+					}
+				}).fail(function(jqXHR, textStatus) {
+					alert(jqXHR.responseText);
+				});
+			}, 30000);
+			
+			waitingForReply = true;
+		}
 	}).fail(function(jqXHR, textStatus) {
 		alert(jqXHR.responseText);
 	});
