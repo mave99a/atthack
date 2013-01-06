@@ -22,7 +22,7 @@
       		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBQN4rGMBifoNXZFi22kNeoM3w9clrW2fM&sensor=false">
     	</script>
 		<script type="text/html" id="event_tmpl">
-			<div style="width:90%; margin:10px; padding:10px; border: 2px solid #000055;">
+			<div class="eventitem" style="width:90%; margin:10px; padding:10px; border: 2px solid #000055;">
               <h3><%=summary%></h3>
 			  start: <%=start.dateTime%><br/>
               end: <%=end.dateTime%><br/>
@@ -32,19 +32,21 @@
     </head>
     <body onload="gm.system.init();javascript:init();">
 
-    	<div id='debug'>
+  <!--   	<div id='debug'>
     		<a href='#' onclick='showGoogleCalenderItem();'>Test Google Calendar</a>
     		<a href='#' onclick='shortenUrl("http://www.discoverful.com/").done(function (data) {alert(data);});'>URL Shorten</a>
     	</div>
-    	<div id='output'>
-    	</div>
+    -->
 	    <div id="loadingScreen">
 	    </div>
-	    <div id="calendarScreen">
-	    </div>
-	    <div id="notificationSettingsScreen">
-	    </div>
-	    <div id="drivingScreen">
+    	<div id='event_selection_screen'>
+    	</div>
+	    <div id="in_progress_screen" style='display:none;'>
+	    	<a href='#' id='back_event_selection'> Back </a>
+	    	<div><span id='distance'>0</span> miles to destination</div>	    	
+	    	<a href='#'>Tell my friend XXX</a>
+	    	<a href='#'>Tell my friend XXX</a>
+	    	<a href='#'>Tell my friend XXX</a>
 	    </div>
     </body>
 </html>

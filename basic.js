@@ -68,7 +68,7 @@ function handleEvents(data)
 		var event = data.items[i];
 		
 		var item = $(tmpl('event_tmpl', event));
-		$('#output').append(item);
+		$('#event_selection_screen').append(item);
 		
 		if (event.location) {
 			var button = item.find('.setdest').show();
@@ -97,11 +97,10 @@ function init()
 	    	var lng = positionObj.coords.longitude / (3600 * 1000);
 	    	
 	    	if (currentDest) {
-
-		        console.log('Remaining distance: ' + calcDistance(lat, lng, currentDest.lat(), currentDest.lng()));
-
-		        console.log('Success: watchPosition.');
-		        console.log('Timestamp: ' + positionObj.timestamp + ', Latitude: ' + positionObj.coords.latitude + ', Longitude: ' + positionObj.coords.longitude);	    		
+	    		var remainDistance = calcDistance(lat, lng, currentDest.lat(), currentDest.lng());
+	    		//console.log('Timestamp: ' + positionObj.timestamp + ', Latitude: ' + positionObj.coords.latitude + ', Longitude: ' + positionObj.coords.longitude);	   
+	    		
+	    		$('#distance').text('' + remainDistance);
 	    	}
 	    },
 	    function() {
@@ -115,6 +114,7 @@ function init()
 }
 
 $(function(){
+	showGoogleCalenderItem();
 	$('.setdest').live('click',function() {
 		var address = $(this).data('address');
 		currentDest = $(this).data('latlng');
@@ -134,6 +134,16 @@ $(function(){
 		        //"zip": "48226"
 		    }
 		);
+	});
+	
+	$('.eventitem').live('click', function() {
+		$('#event_selection_screen').hide(); 
+		$('#in_progress_screen').show(); 
+	});
+	
+	$('#back_event_selection').click(function(){
+		$('#event_selection_screen').show(); 
+		$('#in_progress_screen').hide(); 		
 	});
 });
 
@@ -155,7 +165,7 @@ function sendSMS(phoneNumber, message)
 
 function calcDistance(lat1, lng1, lat2, lng2)
 {
-	console.log('lat1, lng1, lat2, lng2: ' + lat1 + ',' + lng1 + ',' + lat2 + ',' + lng2);
+	//console.log('lat1, lng1, lat2, lng2: ' + lat1 + ',' + lng1 + ',' + lat2 + ',' + lng2);
 	var R = 6371; // km
 	var dLat = (lat2-lat1) * Math.PI / 180;
 	var dLng = (lng2-lng1) * Math.PI / 180;
