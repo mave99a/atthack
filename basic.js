@@ -271,6 +271,10 @@ $(function(){
 		    }
 		);
 	});
+	
+	$("#incoming").click(function() {
+		speak($("#incoming").text());
+	});
 });
 
 function sendSMS(phoneNumber, message)
@@ -301,19 +305,11 @@ function sendSMS(phoneNumber, message)
 					var messages = data['InboundSmsMessageList']['InboundSmsMessage'];
 					if (messages.length > 0) {
 						var message = messages[0]['Message'];
-						$("#incoming").html(message).show();
+						$("#incoming").text(message).show();
 						var audio = new Audio("newmessage.wav");
 						audio.play();
 						window.setTimeout(function() {
-							  var xhr = new XMLHttpRequest();
-							  xhr.open('POST', 'https://api.foundry.att.com/a1/speechalpha/texttospeech?access_token=n08bcodfjo7ddv8jemfqj7aw61bn4fkn', true);
-							  xhr.responseType = 'arraybuffer';
-
-							  xhr.onload = function(e) {
-								  playSound(xhr.response);
-							  };
-
-							  xhr.send(message);
+							speak(message);
 						}, 1000);
 						  /*
 						$.ajax({
@@ -338,6 +334,19 @@ function sendSMS(phoneNumber, message)
 	}).fail(function(jqXHR, textStatus) {
 		alert(jqXHR.responseText);
 	});
+}
+
+function speak(text)
+{
+	var xhr = new XMLHttpRequest();
+	xhr.open('POST', 'https://api.foundry.att.com/a1/speechalpha/texttospeech?access_token=n08bcodfjo7ddv8jemfqj7aw61bn4fkn', true);
+	xhr.responseType = 'arraybuffer';
+	
+	xhr.onload = function(e) {
+		playSound(xhr.response);
+	};
+	
+	xhr.send(text);
 }
 
 function playSound(data) {
