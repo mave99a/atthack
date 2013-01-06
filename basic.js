@@ -295,7 +295,9 @@ function sendSMS(phoneNumber, message)
 					var messages = data['InboundSmsMessageList']['InboundSmsMessage'];
 					if (messages.length > 0) {
 						var message = messages[0]['Message'];
-						alert(message);
+						$("#incoming").html(message);
+						var audio = new Audio("newmessage.wav");
+						audio.play();
 					}
 				}).fail(function(jqXHR, textStatus) {
 					alert(jqXHR.responseText);
