@@ -9,6 +9,10 @@ GOOGLE_CALENDER_URL = 'https://www.googleapis.com/calendar/v3/calendars/primary/
 GOOGLE_URL_SHORTENER = 'https://www.googleapis.com/urlshortener/v1/url';
 
 //!!!NOTE!!!: Change OAuth token since it normally expire in 1 hour
+//  
+//  Get Oauth token here:
+//   https://developers.google.com/oauthplayground/?code=4/lAw3rs_qZTiEohO9vZedxr21BBPj.0qML9mvQSr4UuJJVnL49Cc90-hQaeAI
+//
 GOOGLE_OATH_TOKEN = 'ya29.AHES6ZRDJiOVh0ChJ-RlnekSStvrquFjNIpXV96KNMveJXLBI5ECyA';
 
 
@@ -41,7 +45,7 @@ function handleEvents(data)
 	for (var i in data.items) {
 		var event = data.items[i];
 		
-		$('#output').append(event.description||event.summary + ' ' + event.location+ ' '+ event.start.dateTime+ ' <br/>');
+		$('#output').append(tmpl('event_tmpl', event));
 	}
 }
 

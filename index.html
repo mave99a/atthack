@@ -15,10 +15,20 @@
         <script type="text/javascript" src="GMLIB/util.js"></script>
         <script type="text/javascript" src="GMLIB/voice.js"></script>
         <script type="text/javascript" src="jquery-1.8.3.min.js"></script>
+        <script type="text/javascript" src="jstemplate.js"></script>
         <script type="text/javascript" src="basic.js"></script>
         <link rel="stylesheet" href="basic.css" type="text/css"/>
+		<script type="text/html" id="event_tmpl">
+			<div style="width:90%; margin:10px; padding:10px; border: 2px solid #000055;">
+              <h3><%=summary%></h3>
+			  start: <%=start.dateTime%><br/>
+              end: <%=end.dateTime%><br/>
+	          location <%=location%><br/>
+			</div>
+ 		</script>
     </head>
     <body onload="gm.system.init();javascript:init();">
+
     	<div id='debug'>
     		<a href='#' onclick='showGoogleCalenderItem();'>Test Google Calendar</a>
     		<a href='#' onclick='shortenUrl("http://www.discoverful.com/").done(function (data) {alert(data);});'>URL Shorten</a>
@@ -28,12 +38,6 @@
 	    <div id="loadingScreen">
 	    </div>
 	    <div id="calendarScreen">
-	    	Upcoming event:
-	    	<div id="eventDiv">
-	    		4:00PM<br/>
-	    		Haitao Li, Robert Mao<br/>
-	    		Seattle Center
-	    	</div>	
 	    </div>
 	    <div id="notificationSettingsScreen">
 	    </div>
