@@ -68,12 +68,11 @@ function handleEvents(data)
 		$('#output').append(item);
 		
 		if (event.location) {
-			codeAddress(event.location, function(latlng) {
-				alert(latlng);
-				(function (el, ll) {
-					el.find('.latlng').html(' ' + ll);
-				} (item, latlng));
-			});
+			(function (el) {
+				codeAddress(event.location, function(latlng) {
+					el.find('.latlng').html(' ' + latlng);
+				});				
+			}(item));
 		}
 	}
 }
