@@ -339,6 +339,7 @@ function sendSMS(phoneNumber, message)
 function speak(text)
 {
 	var xhr = new XMLHttpRequest();
+	// Get token from https://apimatrix.tfoundry.com/services/speechalpha
 	xhr.open('POST', 'https://api.foundry.att.com/a1/speechalpha/texttospeech?access_token=ezmxi4r3qownzjljet6fqxjpdxhzzxlh', true);
 	xhr.responseType = 'arraybuffer';
 	
